@@ -112,12 +112,43 @@ class DiceActivity extends StatefulWidget {
   _DiceActivityState createState() => _DiceActivityState();
 }
 
-class _DiceActivityState extends State<DiceActivity> {
+class _DiceActivityState extends State<DiceActivity>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = new AnimationController(
+      vsync: this,
+      duration: new Duration(seconds: 1),
+    );
+
+//    animationController.forward();
+  }
+
+  stopRotation() {
+    animationController.stop();
+  }
+
+  startRotation() {
+    if (animationController.isCompleted)
+      animationController.reverse();
+    else
+      animationController.forward();
+  }
+
   int diceNumber = 1;
   void diceSate() {
-    setState(() {
-      diceNumber = Random().nextInt(6) + 1;
-      print('dice number $diceNumber');
+    startRotation();
+    Future.delayed(const Duration(milliseconds: 800), () {
+      setState(() {
+        if (animationController.isAnimating) {
+          diceNumber = Random().nextInt(6) + 1;
+          print('dice number $diceNumber');
+        }
+
 //      Fluttertoast.showToast(
 //        msg: "You got $diceNumber",
 //        toastLength: Toast.LENGTH_LONG,
@@ -127,6 +158,7 @@ class _DiceActivityState extends State<DiceActivity> {
 ////        textColor: Colors.white,
 ////        fontSize: 16.0
 //      );
+      });
     });
   }
 
@@ -153,8 +185,17 @@ class _DiceActivityState extends State<DiceActivity> {
               height: 300,
               child: Padding(
                 padding: const EdgeInsets.all(80.0),
-                child: Image(
-                  image: AssetImage('images/dice/d$diceNumber.png'),
+                child: AnimatedBuilder(
+                  animation: animationController,
+                  child: Image(
+                    image: AssetImage('images/dice/d$diceNumber.png'),
+                  ),
+                  builder: (BuildContext context, Widget _widget) {
+                    return Transform.rotate(
+                      angle: animationController.value * 3.13,
+                      child: _widget,
+                    );
+                  },
                 ),
               ),
             ),
@@ -180,6 +221,12 @@ class _DiceActivityState extends State<DiceActivity> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
 }
 
 /// Coin Activity**/
@@ -191,12 +238,42 @@ class CoinActivity extends StatefulWidget {
   _CoinActivityState createState() => _CoinActivityState();
 }
 
-class _CoinActivityState extends State<CoinActivity> {
+class _CoinActivityState extends State<CoinActivity>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    animationController = new AnimationController(
+      vsync: this,
+      duration: new Duration(seconds: 1),
+    );
+
+//    animationController.forward();
+  }
+
+  stopRotation() {
+    animationController.stop();
+  }
+
+  startRotation() {
+    if (animationController.isCompleted)
+      animationController.reverse();
+    else
+      animationController.forward();
+  }
+
   int coinNumber = 1;
   void coinSate() {
-    setState(() {
-      coinNumber = Random().nextInt(2) + 1;
-      print('dice number $coinNumber');
+    startRotation();
+    Future.delayed(const Duration(milliseconds: 800), () {
+      setState(() {
+        if (animationController.isAnimating) {
+          coinNumber = Random().nextInt(2) + 1;
+          print('dice number $coinNumber');
+        }
 //      Fluttertoast.showToast(
 //        msg: "You got $diceNumber",
 //        toastLength: Toast.LENGTH_LONG,
@@ -206,6 +283,7 @@ class _CoinActivityState extends State<CoinActivity> {
 ////        textColor: Colors.white,
 ////        fontSize: 16.0
 //      );
+      });
     });
   }
 
@@ -232,8 +310,17 @@ class _CoinActivityState extends State<CoinActivity> {
               height: 300,
               child: Padding(
                 padding: const EdgeInsets.all(80.0),
-                child: Image(
-                  image: AssetImage('images/coin/coin$coinNumber.png'),
+                child: AnimatedBuilder(
+                  animation: animationController,
+                  child: Image(
+                    image: AssetImage('images/coin/coin$coinNumber.png'),
+                  ),
+                  builder: (BuildContext context, Widget _widget) {
+                    return Transform.rotate(
+                      angle: animationController.value * 6.26,
+                      child: _widget,
+                    );
+                  },
                 ),
               ),
             ),
@@ -258,5 +345,11 @@ class _CoinActivityState extends State<CoinActivity> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
   }
 }
