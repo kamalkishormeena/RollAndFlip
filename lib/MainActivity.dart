@@ -31,9 +31,8 @@ class _MainActivityState extends State<MainActivity> {
 
   Future<bool> _onWillPop() {
     return showDialog(
-      context: context,
-      builder: (context) =>
-          AlertDialog(
+          context: context,
+          builder: (context) => AlertDialog(
             title: Text('Are you sure?'),
             content: Text('Do you want to exit an App'),
             actions: <Widget>[
@@ -48,7 +47,7 @@ class _MainActivityState extends State<MainActivity> {
               ),
             ],
           ),
-    ) ??
+        ) ??
         false;
   }
 
@@ -68,7 +67,7 @@ class _MainActivityState extends State<MainActivity> {
           ),
           centerTitle: true,
           actionsIconTheme:
-          IconThemeData(color: Colors.black, opacity: 10.0, size: 30.0),
+              IconThemeData(color: Colors.black, opacity: 10.0, size: 30.0),
           actions: <Widget>[
             Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -140,8 +139,7 @@ class _MainActivityState extends State<MainActivity> {
                               color: Colors.white,
                               letterSpacing: 2.0),
                         ),
-                        onPressed: () =>
-                        {
+                        onPressed: () => {
                           _navigateToCoin(context),
                         },
                       ),
