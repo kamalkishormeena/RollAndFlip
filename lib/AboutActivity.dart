@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutActivity extends StatefulWidget {
   AboutActivity({Key key, this.title}) : super(key: key);
@@ -53,6 +54,108 @@ class _AboutActivityState extends State<AboutActivity> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            Container(
+              margin: EdgeInsets.all(25),
+              width: double.infinity,
+              decoration: new BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: new BorderRadius.circular(8.0),
+                boxShadow: <BoxShadow>[
+                  new BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 20.0,
+                    offset: new Offset(0.0, 10.0),
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(15),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Roll And Flip",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(28.0),
+                      child: Table(
+                        children: [
+                          TableRow(children: [
+                            TableCell(
+                              child: Center(
+                                child: Text(
+                                  'App Version',
+                                  style: TextStyle(
+                                      fontSize: 15.0, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Center(
+                                child: Text(
+                                  ':',
+                                  style: TextStyle(
+                                      fontSize: 15.0, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Center(
+                                child: Text(
+                                  '1.0',
+                                  style: TextStyle(
+                                      fontSize: 15.0, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                          ]),
+                          TableRow(children: [
+                            TableCell(
+                              child: Center(
+                                child: Text(
+                                  'Source Code',
+                                  style: TextStyle(
+                                      fontSize: 15.0, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Center(
+                                child: Text(
+                                  ':',
+                                  style: TextStyle(
+                                      fontSize: 15.0, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            TableCell(
+                              child: Center(
+                                child: new InkWell(
+                                  child: new Text("Github",
+                                      style: TextStyle(
+                                          fontSize: 15.0,
+                                          decoration: TextDecoration.underline,
+                                          color: Colors.blue)),
+                                  onTap: () {
+                                    launch(
+                                        'https://github.com/kamalkishormeena/RollAndFlip');
+                                  },
+                                ),
+                              ),
+                            ),
+                          ]),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Container(
               margin: EdgeInsets.all(25),
               decoration: new BoxDecoration(

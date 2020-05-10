@@ -33,7 +33,17 @@ class _MainActivityState extends State<MainActivity> {
     return showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Are you sure?'),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            title: Row(
+              children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Icon(Icons.error_outline)),
+                Text('Are you sure?'),
+              ],
+            ),
             content: Text('Do you want to exit an App'),
             actions: <Widget>[
               FlatButton(
