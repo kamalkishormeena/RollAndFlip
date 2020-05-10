@@ -21,7 +21,7 @@ class _AboutActivityState extends State<AboutActivity> {
         backgroundColor: Colors.white,
         elevation: 0,
         actionsIconTheme:
-        IconThemeData(color: Colors.black, opacity: 10.0, size: 30.0),
+            IconThemeData(color: Colors.black, opacity: 10.0, size: 30.0),
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 20.0),
@@ -71,7 +71,7 @@ class _AboutActivityState extends State<AboutActivity> {
                 padding: EdgeInsets.all(15),
                 child: Text(
                   "This app is just for entertainment purpose only.\n"
-                      "This app is useful whenever you want to roll a dice and toss a coin",
+                  "This app is useful whenever you want to roll a dice and toss a coin",
                   style: TextStyle(fontSize: 20.0, color: Colors.white),
                 ),
               ),
